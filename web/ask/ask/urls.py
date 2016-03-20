@@ -10,11 +10,11 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-	url(r'^question/(\d+)/$', views.test),
-	url(r'^$', views.test),
+	url(r'^question/(?P<qid>\d+)/$', views.question),
+	url(r'^$', views.mainpage),
 	url(r'^login/.*$', views.test),
 	url(r'^signup/.*$', views.test),
 	url(r'^ask/.*$', views.test),
-	url(r'^popular/.*$', views.test),
+	url(r'^popular/.*$', views.popular),
 	url(r'^new/.*$', views.test)
 )

@@ -1,0 +1,17 @@
+<html>
+<title>qa</title>
+<body>
+  <h1>Список вопросов</h1>
+
+  {% for q in question %}
+    <h2>{{ q.title }}</h2><a href="/question/{{ q.id }}/">Вопрос №{{ q.id }}</a>  
+  {% endfor %}  
+  <nav><ul class=paginator>
+      {% for p in paginator.page_range %}
+          <li> 
+            <a href="{{ paginator.baseurl }}{{ p.numerator }}">{{ p.numerator }}</a>
+          </li>
+      {% endfor %}  
+  </ul></nav>
+</body>	
+</html>

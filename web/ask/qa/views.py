@@ -32,25 +32,27 @@ def questpage(request, slug):
 def askform(request):
 	url = '/question/'
 	if request.method == "POST":
-		print(url+'1')
-		if request.POST.get('author'):
-			author = request.POST['author']
-		else:
-			author = request.user
+		print(url)
+		#print(request.USER)
+		#if request.POST['author']:
+		#	author = request.POST['author']
+		#else:
+		author = 'user_test_14483'
+		print(1)
 		ask = AskForm({
 			'title': request.POST['title'],
 			'text': request.POST['text'],
-			'author': author,
-		},)
-		print(url + '2')
+			'author': request.user,
+		})
+		print(2)
 		if ask.is_valid():
 			url = url + str( ask.save() ) + '/'
-			print(url)
+		print(3)
 		return HttpResponseRedirect(url)
 	ask = AskForm({'author': request.user}) 
 	return render(request, 'ask.html',{
 		'ask': ask,
-	})
+	},)
 
 def newanswer(request):
 	url = '/question/'

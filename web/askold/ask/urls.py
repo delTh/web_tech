@@ -14,7 +14,7 @@ urlpatterns = patterns('',
 	url(r'^$', views.mainpage),
 	url(r'^login/.*$', views.test),
 	url(r'^signup/.*$', views.test),
-	url(r'^ask/.*$', views.addAsk),
+	url(r'^ask/.*$', views.test),
 	url(r'^popular/.*$', views.popular),
 	url(r'^new/.*$', views.test)
 )

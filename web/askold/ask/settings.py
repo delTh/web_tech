@@ -1,5 +1,5 @@
 """
-Django settings for asklocal project.
+Django settings for ask project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-TEMPLATE_DIRS = {
-	os.path.join(os.path.dirname(os.path.dirname(__file__)),'static').replace('\\','/'),
+TEMPLATE_DIRS = {os.path.join(os.path.dirname(os.path.dirname(__file__)),'static').replace('\\','/')
 }
 
 
@@ -20,7 +19,7 @@ TEMPLATE_DIRS = {
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0q1wqzz*l7@^-kmnaeejl7ns#e9+qu$x=j60vt*qdq19wa3kkb'
+SECRET_KEY = '9zs$(k)7vtg&n++3o$)r+8yps@jqefdkx=z8mc515h66@)_hy3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -51,9 +50,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'asklocal.urls'
+ROOT_URLCONF = 'ask.urls'
 
-WSGI_APPLICATION = 'asklocal.wsgi.application'
+WSGI_APPLICATION = 'ask.wsgi.application'
 
 
 # Database
@@ -61,8 +60,9 @@ WSGI_APPLICATION = 'asklocal.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'qa',
+	'USER': 'root',
     }
 }
 

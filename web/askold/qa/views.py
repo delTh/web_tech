@@ -1,11 +1,9 @@
 from django.shortcuts import render
 from django.http import Http404
-from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_GET
 from django.core.paginator import Paginator
 from qa.models import Question
 from qa.models import Answer
-from qa.forms import AskForm
 
 
 # Create your views here.
@@ -16,9 +14,9 @@ def test(request, *args, **kwargs):
 
 @require_GET
 def mainpage(request, *args, **kwargs):
-    question = Question.objects.all()
+    question = Question.objects.all().order_by('-added_at')
     #filter(rating__lt=1000)
-    limit = 1
+    limit = 10
     page = request.GET.get('page', 1)
     paginator = Paginator(question,limit)
     paginator.baseurl = '/?page='
@@ -37,7 +35,7 @@ def mainpage(request, *args, **kwargs):
 @require_GET
 def popular(request, *args, **kwargs):
     question = Question.objects.all().order_by('-rating')
-    limit = 1
+    limit = 10
     page = request.GET.get('page', 1)
     paginator = Paginator(question,limit)
     paginator.baseurl = '/popular/?page='
@@ -65,18 +63,3 @@ def question(request, qid):
             return render(request, 'details.html',{
                 'question': question,
             })
-
-
-def addAsk(request):
-    if request.method == 'POST':
-        f = AskForm(request.POST)
-        if f.is_valid():
-            qid = f.save(request.POST.get('title'), request.POST.get('text'))
-            return HttpResponseRedirect('/question/'+str(qid)+'/')
-    else:
-        f = AskForm()
-
-    return render(request, 'ask.html',{
-        'form': f
-    })
-
